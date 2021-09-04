@@ -179,41 +179,41 @@ void timerCallBack() {
 
 int main() {
 
-	lcdMainOnTop();
+   lcdMainOnTop();
 
-	consoleDemoInit();
+   consoleDemoInit();
 
-	videoSetMode(MODE_0_3D);
+   videoSetMode(MODE_0_3D);
 
-	glInit();
+   glInit();
 	
-	glEnable(GL_ANTIALIAS);
+   glEnable(GL_ANTIALIAS);
 
-	glClearColor(0,0,0,31);
-	glClearPolyID(63);
-	glClearDepth(0xFFFF);
+   glClearColor(0,0,0,31);
+   glClearPolyID(63);
+   glClearDepth(0xFFFF);
 	
-	glViewport(0,0,255,191);
+   glViewport(0,0,255,191);
 
-	gluLookAt(	0.0, 0.0, 1.0,		//camera possition 
-				0.0, 0.0, 0.0,		//look at
-				0.0, 1.0, 0.0);		//up
+   gluLookAt(0.0, 0.0, 1.0, //camera possition 
+             0.0, 0.0, 0.0, //look at
+             0.0, 1.0, 0.0); //up
 	
-	glLight(0, RGB15(31,31,31) , 0, 0, floattov10(-1.0));
+   glLight(0, RGB15(31,31,31) , 0, 0, floattov10(-1.0));
 	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(60, 256.0 / 192.0, 0.1, 30);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluPerspective(60, 256.0 / 192.0, 0.1, 30);
 
    glMatrixMode(GL_MODELVIEW);
 
-	glTranslatef(0,0,-14);
+   glTranslatef(0,0,-14);
 
    glPolyFmt(POLY_ALPHA(31) | POLY_CULL_BACK | POLY_FORMAT_LIGHT0);
 	
-	timerStart(0, ClockDivider_1024, TIMER_FREQ_1024(30), timerCallBack); //add 2 degrees 30 times per second
+   timerStart(0, ClockDivider_1024, TIMER_FREQ_1024(30), timerCallBack); //add 2 degrees 30 times per second
    timerStart(1, ClockDivider_1024, 0, timerCallBack); //timer for getting frame rate
-	while (1) {
+   while (1) {
 
       timerElapsed(1);
 
@@ -225,13 +225,13 @@ int main() {
 
       consoleClear();
 
-		glFlush(0);
+      glFlush(0);
 
       iprintf("fps : %d", TIMER_SPEED / timerElapsed(1)); //print frame rate
 
       if (keysHeld() & KEY_START) break;
 
-	}
+   }
 
-	return 0;
+   return 0;
 }
